@@ -50,12 +50,37 @@ const Navbar = () => {
         </div>
       </nav>
 
-      <div className={`mobile-menu ${mobileMenuOpen ? 'open' : ''}`} id="mobileMenu">
-        <button className="mobile-close" id="mobileClose" onClick={closeMobile}>✕</button>
-        {NAV_LINKS.map((link, idx) => (
-          <a key={idx} href={link.href} onClick={closeMobile}>{link.label.toUpperCase()}</a>
-        ))}
-        <a href="/#contact" onClick={closeMobile} style={{ color: 'var(--red)' }}>BOOK A CALL →</a>
+      <div className={`drawer-overlay ${mobileMenuOpen ? 'open' : ''}`} onClick={closeMobile}></div>
+      <div className={`mobile-drawer ${mobileMenuOpen ? 'open' : ''}`} id="mobileMenu">
+        <button className="drawer-close" id="mobileClose" onClick={closeMobile}>✕</button>
+        
+        <div className="drawer-header">
+           <img src="f2slogo.webp" alt="F2S" style={{ height: '40px' }} />
+        </div>
+        
+        <div className="drawer-divider"><span>Explore F2S</span></div>
+        
+        <div className="drawer-links">
+          {NAV_LINKS.map((link, idx) => {
+            const icons = { 'Home': '🏠', 'Services': '⚙️', 'About': '🏢', 'Countries': '🌍', 'Reviews': '⭐', 'Blogs': '📰' };
+            return (
+              <a key={idx} href={link.href} onClick={closeMobile} className="drawer-item">
+                <span className="drawer-icon">{icons[link.label] || '🔗'}</span>
+                <span className="drawer-label">{link.label}</span>
+              </a>
+            );
+          })}
+        </div>
+
+        <div className="drawer-links" style={{ paddingBottom: '30px', marginTop: 'auto' }}>
+          <a href="/#contact" onClick={closeMobile} className="drawer-item">
+            <span className="drawer-icon">✉️</span>
+            <span className="drawer-label">Contact Us</span>
+          </a>
+          <a href="/#contact" onClick={closeMobile} className="drawer-item" style={{ marginTop: '10px' }}>
+            <span className="drawer-label" style={{ color: 'var(--red)', fontWeight: 'bold' }}>BOOK A CALL →</span>
+          </a>
+        </div>
       </div>
     </>
   );
