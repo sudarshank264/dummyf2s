@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import AdminBlogsCMS from '../components/AdminBlogsCMS';
+import AdminReviewsCMS from '../components/AdminReviewsCMS';
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -131,19 +133,9 @@ const AdminDashboard = () => {
                 </div>
               )}
 
-              {activeTab === 'blogs' && (
-                <div className="ad-placeholder">
-                  <h3>Blog CMS System</h3>
-                  <p>In our next phase, we will add the rich-text editor here to let you publish dynamic blog articles!</p>
-                </div>
-              )}
+              {activeTab === 'blogs' && <AdminBlogsCMS />}
 
-              {activeTab === 'reviews' && (
-                <div className="ad-placeholder">
-                  <h3>Reviews Video Manager</h3>
-                  <p>Here you will be able to paste youtube/video links to dynamically update the public Reviews wall!</p>
-                </div>
-              )}
+              {activeTab === 'reviews' && <AdminReviewsCMS />}
             </>
           )}
         </div>

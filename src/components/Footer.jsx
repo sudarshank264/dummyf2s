@@ -5,6 +5,16 @@ const Footer = () => {
   return (
     <footer>
       <div className="footer-inner">
+        <div className="footer-topbar" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', gap: '20px', paddingBottom: '32px', marginBottom: '40px', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+          <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap', fontSize: '0.85rem' }}>
+            <a href="tel:+919266896162" style={{ color: 'var(--red)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>📞 <span style={{ color: 'var(--white)', transition: 'color var(--transition)' }}>+91 926-689-6162</span></a>
+            <a href="tel:+917042238065" style={{ color: 'var(--red)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>📞 <span style={{ color: 'var(--white)', transition: 'color var(--transition)' }}>+91 704-223-8065</span></a>
+            <a href="tel:+919211517828" style={{ color: 'var(--red)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>📞 <span style={{ color: 'var(--white)', transition: 'color var(--transition)' }}>+91 921-151-7828</span></a>
+          </div>
+          <div style={{ fontSize: '0.85rem' }}>
+            <a href="mailto:info@flight2sucessimmigration.com" style={{ color: 'var(--red)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>✉ <span style={{ color: 'var(--white)', transition: 'color var(--transition)' }}>info@flight2sucessimmigration.com</span></a>
+          </div>
+        </div>
         <div className="footer-grid">
           <div className="footer-brand">
             <img 

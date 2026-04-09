@@ -1,5 +1,4 @@
 import React from 'react';
-import Topbar from "../components/Topbar";
 import Navbar from "../components/Navbar";
 import Ticker from '../components/Ticker';
 import Hero from "../components/Hero";
@@ -15,7 +14,6 @@ import Footer from "../components/Footer";
 const Home = () => {
   return (
     <>
-      <Topbar />
       <Navbar />
       <Ticker />
       <Hero />

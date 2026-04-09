@@ -1,8 +1,39 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { REVIEWS_DATA } from '../data';
 
 const Reviews = () => {
+  const [reviews, setReviews] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 800); // 800ms fast fail!
+      try {
+        const res = await fetch('http://localhost:5001/api/reviews', { signal: controller.signal });
+        clearTimeout(timeoutId);
+        if (res.ok) {
+          const data = await res.json();
+          // Backend filter active only
+          const activeOnly = data.filter(r => r.isActive);
+          setReviews(activeOnly.length > 0 ? activeOnly : REVIEWS_DATA);
+        } else {
+          setReviews(REVIEWS_DATA);
+        }
+      } catch (err) {
+        clearTimeout(timeoutId);
+        console.error('API Error, falling back to static reviews');
+        setReviews(REVIEWS_DATA);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchReviews();
+  }, []);
+
+  const displayReviews = reviews.length > 0 ? reviews.slice(0, 4) : REVIEWS_DATA.slice(0, 4);
+
   return (
     <section className="section" style={{ backgroundColor: 'var(--white)' }} id="reviews">
       <div className="section-inner">
@@ -14,8 +45,12 @@ const Reviews = () => {
         </div>
         
         <div className="reviews-styled-grid reveal">
-          {REVIEWS_DATA.map((review, idx) => (
-            <div className="styled-review-card" key={idx}>
+          {displayReviews.map((review, idx) => {
+            const Wrapper = review.videoUrl ? 'a' : 'div';
+            const wrapperProps = review.videoUrl ? { href: review.videoUrl, target: '_blank', rel: 'noreferrer' } : {};
+            
+            return (
+            <Wrapper {...wrapperProps} className="styled-review-card" key={idx}>
               <div className="src-header">
                 <div className="src-contact">
                   <div>📞 +91 926-689-6162 | +91 704-223-8065</div>
@@ -30,9 +65,10 @@ const Reviews = () => {
                    <br/>IMMIGRATION
                 </div>
               </div>
-              <div className="src-view-text">View Video</div>
-            </div>
-          ))}
+              {review.videoUrl && <div className="src-view-text">Watch Video</div>}
+            </Wrapper>
+            );
+          })}
         </div>
         
         <div style={{ textAlign: 'center', marginTop: '40px' }}>
