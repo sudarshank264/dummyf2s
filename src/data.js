@@ -112,7 +112,7 @@ export const BLOGS_DATA = [
     tag: 'Canada • PR Visa',
     title: 'Canada to Grant Permanent Residency to 33,000 Temporary Workers',
     excerpt: 'Learn about the new IRCC TR-to-PR pathway — Canada to grant permanent residency to 33,000 temporary workers.',
-    bannerImg: 'https://images.unsplash.com/photo-1542662565-7e4fd6e44a7d?q=80&w=1600&auto=format&fit=crop',
+    bannerImg: 'https://images.unsplash.com/photo-1503614472-8c93d56e92ce?q=80&w=1600&auto=format&fit=crop',
     content: [
       { type: 'intro', text: 'Canada has launched a new immigration initiative that will allow up to 33,000 skilled temporary foreign workers already living in the country to obtain permanent residency over the next two years. The programme is part of the 2026-2028 Immigration Levels Plan and aims to address labour shortages while reducing the number of non-permanent residents. The government also plans to tighten immigration controls, limit international student numbers, and keep permanent resident admissions below 1% of the population after 2027.' },
       { type: 'h3', text: 'Government launches new pathway to reduce temporary residents and address labour shortages' },
@@ -138,7 +138,7 @@ export const BLOGS_DATA = [
     tag: 'Finland • Skilled Workers',
     title: 'Finland Seeks 30,000 Skilled Professionals',
     excerpt: 'Finland has become a prominent destination for students, researchers, and innovators with new openings for international talent.',
-    bannerImg: 'https://images.unsplash.com/photo-1536640552734-71ea8c5e62ab?q=80&w=1600&auto=format&fit=crop',
+    bannerImg: 'https://images.unsplash.com/photo-1541078696884-25e12daaa3db?q=80&w=1600&auto=format&fit=crop',
     content: [
       { type: 'intro', text: 'Finland is looking out for 30,000 skilled professionals to fill crucial gaps in its workforce, particularly in technology, healthcare, and engineering sectors. The country offers tremendous work-life balance and a strong focus on innovation.' },
       { type: 'h3', text: 'Why Choose Finland?' },

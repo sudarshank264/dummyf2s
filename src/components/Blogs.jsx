@@ -46,12 +46,19 @@ const Blogs = () => {
           {displayBlogs.map((blog, idx) => (
             <Link to={`/blog/${blog.slug || blog.id}`} className="blog-card" key={idx}>
               <div className="blog-thumb">
-                {blog.bannerImg ? <img src={blog.bannerImg} style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt="blog thumb" /> : blog.thumb}
+                <img 
+                  src={blog.bannerImg || 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=600&auto=format&fit=crop'} 
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                  alt={blog.title || "blog thumb"} 
+                />
               </div>
               <div className="blog-body">
                 <div className="blog-tag">{blog.tag}</div>
                 <h3 className="blog-title">{blog.title}</h3>
                 <p className="blog-excerpt">{blog.excerpt}</p>
+                <div style={{ marginTop: 'auto', paddingTop: '16px' }}>
+                  <span className="btn-primary" style={{ display: 'inline-block', padding: '8px 16px', fontSize: '0.85rem', width: 'fit-content' }}>Read More →</span>
+                </div>
               </div>
             </Link>
           ))}
