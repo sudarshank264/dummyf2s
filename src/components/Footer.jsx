@@ -18,12 +18,9 @@ const Footer = () => {
         <div className="footer-grid">
           <div className="footer-brand">
             <img 
-              src="f2slogo.webp" 
+              src="/f2slogo.webp" 
               alt="Flight2Sucess Immigration" 
-              style={{ height: '40px', width: 'auto', filter: 'brightness(0) invert(1)' }}
-              onError={(e) => {
-                e.target.outerHTML = "<div style='font-family:var(--ff-display);font-size:1.4rem;color:var(--white);letter-spacing:1px;'>FLIGHT2SUCESS</div>";
-              }} 
+              style={{ height: '56px', width: 'auto' }}
             />
             <p>India's best Immigration and Visa Consultants based in South Delhi, providing reliable assistance to thousands of clients across the world.</p>
             <p className="brand-legal">Brand name of<br/>FLIGHT TO SUCESS IMMIGRATION LLP</p>

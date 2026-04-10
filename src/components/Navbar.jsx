@@ -23,20 +23,9 @@ const Navbar = () => {
         <div className="nav-inner">
           <a href="/#home" className="logo">
             <img 
-              src="f2slogo.webp" 
+              src="/f2slogo.webp" 
               alt="Flight2Sucess Immigration"
-              onError={(e) => { 
-                e.target.style.display = 'none'; 
-                document.getElementById('logo-fb').style.display = 'flex'; 
-              }} 
             />
-            <div className="logo-fallback" id="logo-fb" style={{ display: 'none' }}>
-              <div className="logo-mark">F2S</div>
-              <div>
-                <div className="logo-text">FLIGHT2SUCESS</div>
-                <span className="logo-sub">Immigration Consultants</span>
-              </div>
-            </div>
           </a>
           <ul className="nav-links">
             {NAV_LINKS.map((link, idx) => (
@@ -55,23 +44,12 @@ const Navbar = () => {
         <button className="drawer-close" id="mobileClose" onClick={closeMobile}>✕</button>
         
         <div className="drawer-header" style={{ justifyContent: 'flex-start' }}>
-          <a href="/#home" className="logo" onClick={closeMobile}>
+          <a href="/#home" onClick={closeMobile} style={{ display: 'inline-block' }}>
             <img 
-              src="f2slogo.webp" 
+              src="/f2slogo.webp" 
               alt="Flight2Sucess Immigration"
-              style={{ height: '40px' }}
-              onError={(e) => { 
-                e.target.style.display = 'none'; 
-                document.getElementById('logo-fb-mobile').style.display = 'flex'; 
-              }} 
+              style={{ height: '42px', width: 'auto' }}
             />
-            <div className="logo-fallback" id="logo-fb-mobile" style={{ display: 'none' }}>
-              <div className="logo-mark">F2S</div>
-              <div>
-                <div className="logo-text">FLIGHT2SUCESS</div>
-                <span className="logo-sub">Immigration Consultants</span>
-              </div>
-            </div>
           </a>
         </div>
         

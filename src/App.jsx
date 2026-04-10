@@ -3,7 +3,6 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import Home from './pages/Home';
 import ReviewsPage from './pages/ReviewsPage';
 import BlogPage from './pages/BlogPage';
-import Cursor from './components/Cursor';
 
 // ScrollToTop strictly for route changes
 const ScrollToTop = () => {
@@ -51,7 +50,6 @@ const App = () => {
 
   return (
     <>
-      <Cursor />
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />

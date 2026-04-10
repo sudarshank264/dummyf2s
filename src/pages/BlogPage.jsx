@@ -55,7 +55,7 @@ const BlogPage = () => {
     <>
       <Navbar />
 
-      <main style={{ backgroundColor: 'var(--white)', minHeight: '80vh', paddingBottom: '80px' }}>
+      <main style={{ backgroundColor: 'var(--white)', minHeight: '80vh' }}>
         {/* HERO BANNER */}
         <section style={{
           position: 'relative',
@@ -92,8 +92,9 @@ const BlogPage = () => {
         </section>
 
         {/* CONTENT AREA - WHITE BACKGROUND, RED & BLACK ACCENTS */}
-        <section className="section-inner" style={{ marginTop: '60px', maxWidth: '800px', margin: '60px auto 0' }}>
-          {blog.content.map((block, idx) => {
+        <div className="section" style={{ padding: '60px 0', minHeight: '50vh' }}>
+          <section className="section-inner" style={{ maxWidth: '800px', margin: '0 auto' }}>
+            {blog.content.map((block, idx) => {
             if (block.type === 'intro') {
               return (
                 <p key={idx} style={{
@@ -136,7 +137,8 @@ const BlogPage = () => {
             }
             return null;
           })}
-        </section>
+          </section>
+        </div>
       </main>
 
       <Footer />

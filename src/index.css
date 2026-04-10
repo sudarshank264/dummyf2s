@@ -34,30 +34,6 @@ body {
   color: var(--black);
   overflow-x: hidden;
   line-height: 1.6;
-  cursor: none;
-}
-
-/* ── CURSOR ── */
-.cursor {
-  position: fixed;
-  width: 10px; height: 10px;
-  background: var(--red);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 99999;
-  transform: translate(-50%,-50%);
-  transition: width 0.2s, height 0.2s;
-}
-.cursor-ring {
-  position: fixed;
-  width: 34px; height: 34px;
-  border: 1.5px solid var(--red);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 99998;
-  transform: translate(-50%,-50%);
-  opacity: 0.4;
-  transition: opacity 0.3s;
 }
 
 /* ── NAV ── */
@@ -112,8 +88,8 @@ nav {
 /* Mobile Drawer */
 .mobile-drawer {
   position: fixed; top: 0; right: -100%; width: 85%; max-width: 360px; height: 100vh;
-  background-color: var(--white);
-  background-image: linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+  background-color: var(--black);
+  background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
   background-size: 60px 60px;
   z-index: 1001;
   box-shadow: -4px 0 24px rgba(0,0,0,0.15);
@@ -132,16 +108,16 @@ nav {
 .drawer-header { padding: 30px 24px 20px; display: flex; justify-content: center; }
 
 .drawer-divider {
-  display: flex; align-items: center; text-align: center; color: var(--grey); margin: 10px 24px; font-size: 0.85rem;
+  display: flex; align-items: center; text-align: center; color: rgba(255,255,255,0.5); margin: 10px 24px; font-size: 0.85rem;
 }
-.drawer-divider::before, .drawer-divider::after { content: ''; flex: 1; border-bottom: 1px solid #eee; }
+.drawer-divider::before, .drawer-divider::after { content: ''; flex: 1; border-bottom: 1px solid rgba(255,255,255,0.1); }
 .drawer-divider::before { margin-right: 10px; }
 .drawer-divider::after { margin-left: 10px; }
 
 .drawer-links { display: flex; flex-direction: column; padding: 10px 24px; }
 .drawer-item {
   display: flex; align-items: center; padding: 14px 0;
-  color: var(--black); text-decoration: none; font-size: 1.05rem; font-family: var(--ff-body); font-weight: 400;
+  color: var(--white); text-decoration: none; font-size: 1.05rem; font-family: var(--ff-body); font-weight: 400;
   border-bottom: 1px solid transparent; transition: all 0.2s;
 }
 .drawer-item:hover { transform: translateX(4px); color: var(--red); }
