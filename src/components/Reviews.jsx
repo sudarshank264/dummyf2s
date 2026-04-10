@@ -35,10 +35,11 @@ const Reviews = () => {
   const displayReviews = reviews.length > 0 ? reviews.slice(0, 4) : REVIEWS_DATA.slice(0, 4);
 
   return (
-    <section className="section" style={{ backgroundColor: 'var(--white)' }} id="reviews">
+    <section className="section" id="reviews">
       <div className="section-inner">
         <div style={{ marginBottom: '40px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-          <h2 className="section-title" style={{ color: 'var(--red)', fontSize: '2.5rem', margin: 0 }}>Reviews</h2>
+          <span className="section-tag">Client Reviews</span>
+          <h2 className="section-title">OUR<br/><span className="outline">REVIEWS</span></h2>
           <p className="section-desc" style={{ color: "var(--grey)", maxWidth: '100%', fontSize: '0.9rem', marginTop: '4px' }}>
             Hear it from our clients. See How We Empowered Clients to Reach Their Immigration Goals
           </p>
