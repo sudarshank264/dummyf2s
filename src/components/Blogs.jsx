@@ -9,7 +9,7 @@ const Blogs = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 800); // 800ms fast fail!
+      const timeoutId = setTimeout(() => controller.abort(), 800);
       try {
         const res = await fetch('http://localhost:5001/api/blogs', { signal: controller.signal });
         clearTimeout(timeoutId);
@@ -38,7 +38,7 @@ const Blogs = () => {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '20px' }}>
           <div>
             <span className="section-tag">Latest News</span>
-            <h2 className="section-title">IMMIGRATION<br/><span className="outline">BLOGS</span></h2>
+            <h2 className="section-title">IMMIGRATION<br /><span className="outline">BLOGS</span></h2>
           </div>
           <Link to="/blogs" className="btn-primary" style={{ fontSize: '0.76rem', padding: '10px 22px' }}>View All Blogs →</Link>
         </div>
