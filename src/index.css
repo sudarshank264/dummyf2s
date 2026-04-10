@@ -309,7 +309,7 @@ nav {
 .card-2-value { font-family: var(--ff-display); font-size: 1.4rem; color: var(--red); }
 
 /* ── SECTIONS ── */
-.section { padding: 14px 0; position: relative; background: var(--white); scroll-margin-top: 86px; }
+.section { padding: 14px 0; position: relative; background: var(--white); scroll-margin-top: 69px; }
 .section::before {
   content: ''; position: absolute; inset: 0;
   background-image: linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
