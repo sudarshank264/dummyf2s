@@ -54,8 +54,25 @@ const Navbar = () => {
       <div className={`mobile-drawer ${mobileMenuOpen ? 'open' : ''}`} id="mobileMenu">
         <button className="drawer-close" id="mobileClose" onClick={closeMobile}>✕</button>
         
-        <div className="drawer-header">
-           <img src="f2slogo.webp" alt="F2S" style={{ height: '40px' }} />
+        <div className="drawer-header" style={{ justifyContent: 'flex-start' }}>
+          <a href="/#home" className="logo" onClick={closeMobile}>
+            <img 
+              src="f2slogo.webp" 
+              alt="Flight2Sucess Immigration"
+              style={{ height: '40px' }}
+              onError={(e) => { 
+                e.target.style.display = 'none'; 
+                document.getElementById('logo-fb-mobile').style.display = 'flex'; 
+              }} 
+            />
+            <div className="logo-fallback" id="logo-fb-mobile" style={{ display: 'none' }}>
+              <div className="logo-mark">F2S</div>
+              <div>
+                <div className="logo-text">FLIGHT2SUCESS</div>
+                <span className="logo-sub">Immigration Consultants</span>
+              </div>
+            </div>
+          </a>
         </div>
         
         <div className="drawer-divider"><span>Explore F2S</span></div>
@@ -73,10 +90,6 @@ const Navbar = () => {
         </div>
 
         <div className="drawer-links" style={{ paddingBottom: '30px', marginTop: 'auto' }}>
-          <a href="/#contact" onClick={closeMobile} className="drawer-item">
-            <span className="drawer-icon">✉️</span>
-            <span className="drawer-label">Contact Us</span>
-          </a>
           <a href="/#contact" onClick={closeMobile} className="drawer-item" style={{ marginTop: '10px' }}>
             <span className="drawer-label" style={{ color: 'var(--red)', fontWeight: 'bold' }}>BOOK A CALL →</span>
           </a>
