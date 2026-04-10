@@ -8,7 +8,7 @@ const Countries = () => {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '20px' }}>
           <div>
             <span className="section-tag">Destinations</span>
-            <h2 className="section-title">COUNTRY<br/><span className="outline">VISA GUIDES</span></h2>
+            <h2 className="section-title">COUNTRY<br /><span className="outline">VISA GUIDES</span></h2>
           </div>
           <p className="section-desc" style={{ maxWidth: '340px' }}>
             Discover a comprehensive visa process guide for different countries on our website. Simplify your visa application journey with expert tips and valuable insights.
