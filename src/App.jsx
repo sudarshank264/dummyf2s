@@ -3,6 +3,11 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import Home from './pages/Home';
 import ReviewsPage from './pages/ReviewsPage';
 import BlogPage from './pages/BlogPage';
+import AboutPage from './pages/AboutPage';
+import ServicesPage from './pages/ServicesPage';
+import CountriesPage from './pages/CountriesPage';
+import BlogsListPage from './pages/BlogsListPage';
+import ContactPage from './pages/ContactPage';
 
 // ScrollToTop strictly for route changes
 const ScrollToTop = () => {
@@ -53,6 +58,11 @@ const App = () => {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/services" element={<ServicesPage />} />
+        <Route path="/countries" element={<CountriesPage />} />
+        <Route path="/blogs" element={<BlogsListPage />} />
+        <Route path="/contact" element={<ContactPage />} />
         <Route path="/reviews" element={<ReviewsPage />} />
         <Route path="/blog/:id" element={<BlogPage />} />
       </Routes>

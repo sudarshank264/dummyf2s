@@ -1,10 +1,10 @@
 export const NAV_LINKS = [
-  { label: 'Home', href: '/#home' },
-  { label: 'Services', href: '/#services' },
-  { label: 'About', href: '/#about' },
-  { label: 'Countries', href: '/#countries' },
-  { label: 'Reviews', href: '/#reviews' },
-  { label: 'Blogs', href: '/#blogs' }
+  { label: 'Home', href: '/' },
+  { label: 'Services', href: '/services' },
+  { label: 'About', href: '/about' },
+  { label: 'Countries', href: '/countries' },
+  { label: 'Reviews', href: '/reviews' },
+  { label: 'Blogs', href: '/blogs' }
 ];
 
 export const HERO_STATS = [
