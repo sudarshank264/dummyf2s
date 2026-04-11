@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { BLOGS_DATA } from '../data';
 
-const Blogs = () => {
+const Blogs = ({ hideViewAllButton, showAll }) => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -30,7 +30,9 @@ const Blogs = () => {
     fetchBlogs();
   }, []);
 
-  const displayBlogs = blogs.length > 0 ? blogs.slice(0, 3) : BLOGS_DATA.slice(0, 3); // show only 3 on home
+  const displayBlogs = showAll 
+    ? (blogs.length > 0 ? blogs : BLOGS_DATA)
+    : (blogs.length > 0 ? blogs.slice(0, 3) : BLOGS_DATA.slice(0, 3));
 
   return (
     <section className="section blogs-bg" id="blogs">
@@ -40,16 +42,18 @@ const Blogs = () => {
             <span className="section-tag">Latest News</span>
             <h2 className="section-title">IMMIGRATION<br /><span className="outline">BLOGS</span></h2>
           </div>
-          <Link to="/blogs" className="btn-primary" style={{ fontSize: '0.76rem', padding: '10px 22px' }}>View All Blogs →</Link>
+          {!hideViewAllButton && (
+            <Link to="/blogs" className="btn-primary" style={{ fontSize: '0.76rem', padding: '10px 22px' }}>View All Blogs →</Link>
+          )}
         </div>
         <div className="blogs-grid reveal">
           {displayBlogs.map((blog, idx) => (
             <Link to={`/blog/${blog.slug || blog.id}`} className="blog-card" key={idx}>
               <div className="blog-thumb">
-                <img 
-                  src={blog.bannerImg || 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=600&auto=format&fit=crop'} 
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
-                  alt={blog.title || "blog thumb"} 
+                <img
+                  src={blog.bannerImg || 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=600&auto=format&fit=crop'}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  alt={blog.title || "blog thumb"}
                 />
               </div>
               <div className="blog-body">

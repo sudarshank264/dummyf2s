@@ -8,7 +8,7 @@ const BlogsListPage = () => {
     <>
       <Navbar />
       <div style={{ paddingTop: '20px', minHeight: '80vh' }}>
-        <Blogs />
+        <Blogs hideViewAllButton={true} showAll={true} />
       </div>
       <Footer />
     </>

@@ -202,7 +202,7 @@ export const FOOTER_LINKS_QUICK = [
   { label: 'Reviews', href: '/#reviews' },
   { label: 'Blogs', href: '/#blogs' },
   { label: 'Contact', href: '/#contact' },
-  { label: 'Anti Fraud Policy', href: 'https://flight2sucessimmigration.com/antifraud.html', external: true }
+  { label: 'Anti Fraud Policy', href: '', external: true }
 ];
 
 export const FOOTER_LINKS_CONTACT = [
