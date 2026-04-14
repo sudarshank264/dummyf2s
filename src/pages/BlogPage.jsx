@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { BLOGS_DATA } from '../data';
+import { DataContext } from '../context/DataContext';
 
 const BlogPage = () => {
   const { id } = useParams();
+  const { blogs, loading: contextLoading } = useContext(DataContext);
   const [blog, setBlog] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -13,31 +15,20 @@ const BlogPage = () => {
     // Scroll to top on load
     window.scrollTo(0, 0);
 
-    const fetchBlog = async () => {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 800); // 800ms fast fail!
-      try {
-        const res = await fetch(`http://localhost:5001/api/blogs/${id}`, { signal: controller.signal });
-        clearTimeout(timeoutId);
-        if (res.ok) {
-          const data = await res.json();
-          setBlog(data);
-        } else {
-          // Fallback to static
-          const foundBlog = BLOGS_DATA.find((b) => b.id === id || b.slug === id);
-          setBlog(foundBlog === undefined ? false : foundBlog); 
-        }
-      } catch (err) {
-        clearTimeout(timeoutId);
-        console.error('API Error, falling back to static blog');
-        const foundBlog = BLOGS_DATA.find((b) => b.id === id || b.slug === id);
-        setBlog(foundBlog === undefined ? false : foundBlog);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchBlog();
-  }, [id]);
+    if (contextLoading) return;
+
+    let foundBlog = null;
+    if (blogs && blogs.length > 0) {
+      foundBlog = blogs.find((b) => String(b._id) === id || String(b.id) === id || String(b.slug) === id);
+    }
+
+    if (!foundBlog) {
+      foundBlog = BLOGS_DATA.find((b) => String(b.id) === id || String(b.slug) === id);
+    }
+
+    setBlog(foundBlog === undefined ? false : foundBlog);
+    setLoading(false);
+  }, [id, blogs, contextLoading]);
 
   if (loading) {
     return <main style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Loading...</main>;

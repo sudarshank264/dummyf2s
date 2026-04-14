@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
+import { DataProvider } from './context/DataContext';
 import Home from './pages/Home';
 import ReviewsPage from './pages/ReviewsPage';
 import BlogPage from './pages/BlogPage';
@@ -54,7 +55,7 @@ const App = () => {
   }, []);
 
   return (
-    <>
+    <DataProvider>
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -66,7 +67,7 @@ const App = () => {
         <Route path="/reviews" element={<ReviewsPage />} />
         <Route path="/blog/:id" element={<BlogPage />} />
       </Routes>
-    </>
+    </DataProvider>
   );
 };
 

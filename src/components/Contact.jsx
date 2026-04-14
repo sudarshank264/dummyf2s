@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { CONTACT_INFO } from '../data';
+import { DataContext } from '../context/DataContext';
 
 const Contact = () => {
+  const { content } = useContext(DataContext);
   const [formData, setFormData] = useState({
     fname: '',
     lname: '',
@@ -66,26 +68,33 @@ const Contact = () => {
         </div>
         <div className="contact-grid reveal">
           <div className="contact-info">
-            {CONTACT_INFO.map((info, idx) => (
+            {CONTACT_INFO.map((info, idx) => {
+              let dynamicLines = info.lines;
+              if (content) {
+                if (info.label === 'Our Office' && content.address) dynamicLines = [content.address];
+                if (info.label === 'Phone Numbers' && content.contactPhone) dynamicLines = [content.contactPhone];
+                if (info.label === 'Email Address' && content.contactEmail) dynamicLines = [content.contactEmail];
+              }
+              return (
               <div className="contact-item" key={idx}>
                 <div className="ci-icon">{info.icon}</div>
                 <div>
                   <div className="ci-label">{info.label}</div>
                   <div className="ci-value">
-                    {info.lines.map((line, lIdx) => (
+                    {dynamicLines.map((line, lIdx) => (
                       <React.Fragment key={lIdx}>
                         {info.isLink ? (
                           <a href={`${info.linkPrefix}${line.replace(/ /g, '').replace(/-/g, '')}`}>{line}</a>
                         ) : (
                           line
                         )}
-                        {lIdx < info.lines.length - 1 && <br />}
+                        {lIdx < dynamicLines.length - 1 && <br />}
                       </React.Fragment>
                     ))}
                   </div>
                 </div>
               </div>
-            ))}
+            )})}
           </div>
           
           <div className="contact-form">

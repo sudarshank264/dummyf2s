@@ -20,11 +20,11 @@ const Faq = () => {
         {/* Red Call To Action Bar */}
         <div className="faq-cta-bar" style={{
           backgroundColor: 'var(--red)',
-          borderRadius: '50px',
+          borderRadius: '20px',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          padding: '20px 20px',
+          padding: '10px 20px',
           marginBottom: '10px',
           flexWrap: 'wrap',
           gap: ''
@@ -43,10 +43,10 @@ const Faq = () => {
         </div>
 
         <h2 style={{
-          color: 'var(--red)',
-          fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
+          color: 'var(--black)',
+          fontSize: 'clamp(2.5rem, 2vw, 3.5rem)',
           textAlign: 'center',
-          marginBottom: '60px',
+          marginBottom: '10px',
           fontWeight: 600,
           letterSpacing: '-1px'
         }}>
@@ -61,7 +61,7 @@ const Faq = () => {
                 key={idx}
                 className={`faq-item ${isOpen ? 'open' : ''}`}
                 style={{
-                  backgroundColor: 'var(--red)',
+                  backgroundColor: 'var(--black)',
                   borderRadius: '16px',
                   overflow: 'hidden',
                   cursor: 'pointer',
@@ -70,7 +70,7 @@ const Faq = () => {
                 onClick={() => toggle(idx)}
               >
                 <div style={{
-                  padding: '24px 30px',
+                  padding: '10px 10px',
                   display: 'flex',
                   justifyContent: 'space-between',
                   alignItems: 'center',

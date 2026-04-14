@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { SERVICES_DATA } from '../data';
+import { DataContext } from '../context/DataContext';
 
 const Services = () => {
+  const { services } = useContext(DataContext);
+  const displayServices = services && services.length > 0 ? services : SERVICES_DATA;
   return (
     <section className="section services-bg" id="services">
       <div className="section-inner">
@@ -16,12 +19,18 @@ const Services = () => {
         </div>
         
         <div className="services-grid reveal">
-          {SERVICES_DATA.map((service, idx) => (
+          {displayServices.map((service, idx) => (
             <div className="service-card" key={idx}>
-              <div className="service-num">{service.id}</div>
-              <div className="service-icon-wrap">{service.icon}</div>
+              <div className="service-num">{service.id || String(idx + 1).padStart(2, '0')}</div>
+              <div className="service-icon-wrap">
+                {service.iconUrl ? (
+                  <img src={service.iconUrl} alt={service.title} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                ) : (
+                  service.icon || '✨'
+                )}
+              </div>
               <h3 className="service-title">{service.title}</h3>
-              <p className="service-desc">{service.desc}</p>
+              <p className="service-desc">{service.description || service.desc}</p>
             </div>
           ))}
         </div>

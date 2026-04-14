@@ -1,38 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { REVIEWS_DATA } from '../data';
+import { DataContext } from '../context/DataContext';
 
 const Reviews = () => {
-  const [reviews, setReviews] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { reviews, loading } = useContext(DataContext);
 
-  useEffect(() => {
-    const fetchReviews = async () => {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 800); // 800ms fast fail!
-      try {
-        const res = await fetch('http://localhost:5001/api/reviews', { signal: controller.signal });
-        clearTimeout(timeoutId);
-        if (res.ok) {
-          const data = await res.json();
-          // Backend filter active only
-          const activeOnly = data.filter(r => r.isActive);
-          setReviews(activeOnly.length > 0 ? activeOnly : REVIEWS_DATA);
-        } else {
-          setReviews(REVIEWS_DATA);
-        }
-      } catch (err) {
-        clearTimeout(timeoutId);
-        console.error('API Error, falling back to static reviews');
-        setReviews(REVIEWS_DATA);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchReviews();
-  }, []);
-
-  const displayReviews = reviews.length > 0 ? reviews.slice(0, 4) : REVIEWS_DATA.slice(0, 4);
+  const displayReviews = reviews && reviews.length > 0 ? reviews.slice(0, 4) : REVIEWS_DATA.slice(0, 4);
 
   return (
     <section className="section" id="reviews">

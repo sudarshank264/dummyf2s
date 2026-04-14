@@ -1,37 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Faq from '../components/Faq';
 import Footer from '../components/Footer';
 import { REVIEWS_DATA } from '../data';
+import { DataContext } from '../context/DataContext';
 
 const ReviewsPage = () => {
-  const [reviews, setReviews] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { reviews } = useContext(DataContext);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    const fetchReviews = async () => {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 800); // 800ms fast fail!
-      try {
-        const res = await fetch('http://localhost:5001/api/reviews', { signal: controller.signal });
-        clearTimeout(timeoutId);
-        if (res.ok) {
-          const data = await res.json();
-          const activeOnly = data.filter(r => r.isActive);
-          setReviews(activeOnly.length > 0 ? activeOnly : REVIEWS_DATA);
-        } else {
-          setReviews(REVIEWS_DATA);
-        }
-      } catch (err) {
-        clearTimeout(timeoutId);
-        console.error('API Error, falling back to static reviews');
-        setReviews(REVIEWS_DATA);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchReviews();
   }, []);
 
   return (
@@ -45,7 +23,7 @@ const ReviewsPage = () => {
           </h1>
 
           <div className="reviews-styled-grid" style={{ marginBottom: '80px' }}>
-            {(reviews.length > 0 ? reviews : REVIEWS_DATA).map((review, idx) => {
+            {(reviews && reviews.length > 0 ? reviews : REVIEWS_DATA).map((review, idx) => {
               const Wrapper = review.videoUrl ? 'a' : 'div';
               const wrapperProps = review.videoUrl ? { href: review.videoUrl, target: '_blank', rel: 'noreferrer' } : {};
 

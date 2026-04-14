@@ -1,20 +1,38 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { HERO_STATS } from '../data';
+import { DataContext } from '../context/DataContext';
 
 const Hero = () => {
+  const { content } = useContext(DataContext);
+
+  const renderHeroTitle = (title) => {
+    if (!title) return (
+      <h1 className="fade-up d1">
+        GET THE
+        <span className="accent">BEST VISA</span>
+        <span className="outline">SERVICE</span>
+      </h1>
+    );
+    const words = title.split(' ');
+    if (words.length <= 2) return <h1 className="fade-up d1">{title}</h1>;
+    const outline = words.pop();
+    const accent = words.pop();
+    const rest = words.join(' ');
+    return (
+      <h1 className="fade-up d1">
+        {rest} <span className="accent">{accent}</span> <span className="outline">{outline}</span>
+      </h1>
+    );
+  };
   return (
     <section className="hero" id="home">
       <div className="hero-red-bar"></div>
       <div className="hero-inner">
         <div className="hero-content">
           <div className="hero-eyebrow fade-up">India's Trusted Immigration Experts</div>
-          <h1 className="fade-up d1">
-            GET THE
-            <span className="accent">BEST VISA</span>
-            <span className="outline">SERVICE</span>
-          </h1>
+          {renderHeroTitle(content?.heroTitle)}
           <p className="hero-desc fade-up d2">
-            Embark on your international aspirations with confidence. We navigate the complexities of immigration, education, career, and travel — your one-stop shop for global success.
+            {content?.heroSubtitle || 'Embark on your international aspirations with confidence. We navigate the complexities of immigration, education, career, and travel — your one-stop shop for global success.'}
           </p>
           <div className="hero-actions fade-up d3">
             <a href="/#contact" className="btn-primary">📅 Book a Free Call</a>

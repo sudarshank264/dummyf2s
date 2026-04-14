@@ -65,35 +65,35 @@ export const COUNTRIES_DATA = [
     flag: '🇸🇪',
     name: 'SWEDEN',
     sub: 'Sweden Visa Guide',
-    url: 'https://flight2sucessimmigration.com/SwedenVisaGuide.html',
+    
     features: ['How to apply', 'Visa types available', 'Documents required', 'Processing time']
   },
   {
     flag: '🇩🇪',
     name: 'GERMANY',
     sub: 'Germany Visa Guide',
-    url: 'https://flight2sucessimmigration.com/germanyvisaguide.html',
+    
     features: ['How to apply', 'Opportunity Card', 'Documents required', 'Processing time']
   },
   {
     flag: '🇦🇹',
     name: 'AUSTRIA',
     sub: 'Austria Visa Guide',
-    url: 'https://flight2sucessimmigration.com/Austriavisaguide.html',
+    
     features: ['How to apply', 'Visa types available', 'Documents required', 'Processing time']
   },
   {
     flag: '🇵🇹',
     name: 'PORTUGAL',
     sub: 'Portugal Visa Guide',
-    url: 'https://flight2sucessimmigration.com/portugalvisaguide.html',
+    
     features: ['How to apply', 'Golden Visa info', 'Documents required', 'Processing time']
   },
   {
     flag: '🇦🇪',
     name: 'UAE',
     sub: 'UAE Visa Guide',
-    url: 'https://flight2sucessimmigration.com/UAEvisaguide.html',
+    
     features: ['How to apply', 'Visa types available', 'Documents required', 'Processing time']
   }
 ];
@@ -195,6 +195,14 @@ export const FOOTER_LINKS_SERVICES = [
   { label: 'Travel Visa', href: '/#services' }
 ];
 
+export const FOOTER_LINKS_CONTACT = [
+  { label: '📍 C-71A Malviya Nagar, New Delhi 110017', href: '#' },
+  // { label: '✉ info@flight2sucessimmigration.com', href: 'mailto:info@flight2sucessimmigration.com' },
+  { label: '📞 +91 926-689-6162', href: 'tel:+919266896162' },
+  { label: '📞 +91 704-223-8065', href: 'tel:+917042238065' },
+  { label: '📞 +91 921-151-7828', href: 'tel:+919211517828' }
+];
+
 export const FOOTER_LINKS_QUICK = [
   { label: 'Home', href: '/#home' },
   { label: 'About Us', href: '/#about' },
@@ -202,10 +210,10 @@ export const FOOTER_LINKS_QUICK = [
   { label: 'Reviews', href: '/#reviews' },
   { label: 'Blogs', href: '/#blogs' },
   { label: 'Contact', href: '/#contact' },
-  { label: 'Anti Fraud Policy', href: '', external: true }
+  { label: 'Anti Fraud Policy', external: true }
 ];
 
-export const FOOTER_LINKS_CONTACT = [
+export const FOOTER_LINKS_CONTACTS = [
   { label: '📍 C-71A Malviya Nagar, New Delhi 110017', href: '#' },
   { label: '✉ info@flight2sucessimmigration.com', href: 'mailto:info@flight2sucessimmigration.com' },
   { label: '📞 +91 926-689-6162', href: 'tel:+919266896162' },

@@ -1,38 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { BLOGS_DATA } from '../data';
+import { DataContext } from '../context/DataContext';
 
 const Blogs = ({ hideViewAllButton, showAll }) => {
-  const [blogs, setBlogs] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchBlogs = async () => {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 800);
-      try {
-        const res = await fetch('http://localhost:5001/api/blogs', { signal: controller.signal });
-        clearTimeout(timeoutId);
-        if (res.ok) {
-          const data = await res.json();
-          setBlogs(data);
-        } else {
-          setBlogs(BLOGS_DATA); // Fallback
-        }
-      } catch (err) {
-        clearTimeout(timeoutId);
-        console.error('API Error, falling back to static blogs');
-        setBlogs(BLOGS_DATA); // Fallback
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchBlogs();
-  }, []);
+  const { blogs, loading } = useContext(DataContext);
 
   const displayBlogs = showAll 
-    ? (blogs.length > 0 ? blogs : BLOGS_DATA)
-    : (blogs.length > 0 ? blogs.slice(0, 3) : BLOGS_DATA.slice(0, 3));
+    ? (blogs && blogs.length > 0 ? blogs : BLOGS_DATA)
+    : (blogs && blogs.length > 0 ? blogs.slice(0, 3) : BLOGS_DATA.slice(0, 3));
 
   return (
     <section className="section blogs-bg" id="blogs">
