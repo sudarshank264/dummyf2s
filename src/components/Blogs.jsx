@@ -1,14 +1,15 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { BLOGS_DATA } from '../data';
 import { DataContext } from '../context/DataContext';
 
 const Blogs = ({ hideViewAllButton, showAll }) => {
   const { blogs, loading } = useContext(DataContext);
 
   const displayBlogs = showAll 
-    ? (blogs && blogs.length > 0 ? blogs : BLOGS_DATA)
-    : (blogs && blogs.length > 0 ? blogs.slice(0, 3) : BLOGS_DATA.slice(0, 3));
+    ? (blogs || [])
+    : ((blogs || []).slice(0, 3));
+
+  if (loading) return null;
 
   return (
     <section className="section blogs-bg" id="blogs">

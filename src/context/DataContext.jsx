@@ -9,16 +9,18 @@ export const DataProvider = ({ children }) => {
   const [services, setServices] = useState([]);
   const [blogs, setBlogs] = useState([]);
   const [reviews, setReviews] = useState([]);
+  const [countries, setCountries] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchAllData = async () => {
       try {
-        const [contentRes, servicesRes, blogsRes, reviewsRes] = await Promise.all([
+        const [contentRes, servicesRes, blogsRes, reviewsRes, countriesRes] = await Promise.all([
           fetch(`${API_URL}/api/content`).catch(() => null),
           fetch(`${API_URL}/api/services`).catch(() => null),
           fetch(`${API_URL}/api/blogs`).catch(() => null),
-          fetch(`${API_URL}/api/reviews`).catch(() => null)
+          fetch(`${API_URL}/api/reviews`).catch(() => null),
+          fetch(`${API_URL}/api/countries`).catch(() => null)
         ]);
 
         if (contentRes && contentRes.ok) {
@@ -41,6 +43,12 @@ export const DataProvider = ({ children }) => {
           const activeOnly = data.filter(r => r.isActive);
           setReviews(activeOnly);
         }
+
+        if (countriesRes && countriesRes.ok) {
+          const data = await countriesRes.json();
+          const activeOnly = data.filter(c => c.isActive);
+          setCountries(activeOnly);
+        }
       } catch (err) {
         console.error('Error fetching global data:', err);
       } finally {
@@ -52,7 +60,7 @@ export const DataProvider = ({ children }) => {
   }, [API_URL]);
 
   return (
-    <DataContext.Provider value={{ content, services, blogs, reviews, loading }}>
+    <DataContext.Provider value={{ content, services, blogs, reviews, countries, loading }}>
       {children}
     </DataContext.Provider>
   );

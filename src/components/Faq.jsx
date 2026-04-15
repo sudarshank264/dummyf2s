@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
-import { FAQ_DATA } from '../data';
+import React, { useState, useContext } from 'react';
+import { DataContext } from '../context/DataContext';
 import { Link } from 'react-router-dom';
 
 const Faq = () => {
   const [openIdx, setOpenIdx] = useState(null);
+  const { content, loading } = useContext(DataContext);
+
+  if (loading) return null;
+  const displayFaqs = content?.faqs || [];
 
   const toggle = (idx) => {
     if (openIdx === idx) {
@@ -54,7 +58,7 @@ const Faq = () => {
         </h2>
 
         <div className="faq-list" style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-          {FAQ_DATA.map((faq, idx) => {
+          {displayFaqs.map((faq, idx) => {
             const isOpen = openIdx === idx;
             return (
               <div

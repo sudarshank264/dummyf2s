@@ -1,7 +1,13 @@
-import React from 'react';
-import { COUNTRIES_DATA } from '../data';
+import React, { useContext } from 'react';
+import { DataContext } from '../context/DataContext';
+import { Link } from 'react-router-dom';
 
 const Countries = () => {
+  const { countries, loading } = useContext(DataContext);
+  if (loading) return null;
+
+  const displayCountries = countries || [];
+
   return (
     <section className="section countries-bg" id="countries">
       <div className="section-inner">
@@ -15,24 +21,18 @@ const Countries = () => {
           </p>
         </div>
         <div className="countries-grid reveal">
-          {COUNTRIES_DATA.map((country, idx) => (
-            <a href={country.url} className="country-card" target="_blank" rel="noreferrer" key={idx}>
-              <div className="cc-header"><div className="cc-flag">{country.flag}</div><div className="cc-arrow">↗</div></div>
+          {displayCountries.map((country, idx) => (
+            <Link to={`/countries/${country.slug}`} className="country-card" key={country._id || idx} style={{ textDecoration: 'none' }}>
+              <div className="cc-header"><div className="cc-flag">{country.code}</div><div className="cc-arrow">↗</div></div>
               <div className="cc-name">{country.name}</div>
-              <div className="cc-sub">{country.sub}</div>
+              <div className="cc-sub">{country.title}</div>
               <ul className="cc-features">
-                {country.features.map((feature, fIdx) => (
+                {(country.shortPoints || []).map((feature, fIdx) => (
                   <li key={fIdx}>{feature}</li>
                 ))}
               </ul>
-            </a>
+            </Link>
           ))}
-          <div className="cc-more">
-            <div className="cc-more-icon">🌐</div>
-            <div className="cc-more-title">MORE COUNTRIES</div>
-            <div className="cc-more-sub">Canada, Finland & many more</div>
-            <a target="_blank" rel="noreferrer" className="btn-primary" style={{ fontSize: '0.76rem', padding: '10px 22px' }}>Explore All →</a>
-          </div>
         </div>
       </div>
     </section>

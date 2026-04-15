@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Faq from '../components/Faq';
 import Footer from '../components/Footer';
-import { REVIEWS_DATA } from '../data';
 import { DataContext } from '../context/DataContext';
 
 const ReviewsPage = () => {
@@ -23,7 +22,7 @@ const ReviewsPage = () => {
           </h1>
 
           <div className="reviews-styled-grid" style={{ marginBottom: '80px' }}>
-            {(reviews && reviews.length > 0 ? reviews : REVIEWS_DATA).map((review, idx) => {
+            {(reviews || []).map((review, idx) => {
               const Wrapper = review.videoUrl ? 'a' : 'div';
               const wrapperProps = review.videoUrl ? { href: review.videoUrl, target: '_blank', rel: 'noreferrer' } : {};
 

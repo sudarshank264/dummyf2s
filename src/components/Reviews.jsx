@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { REVIEWS_DATA } from '../data';
 import { DataContext } from '../context/DataContext';
 
 const Reviews = () => {
   const { reviews, loading } = useContext(DataContext);
+  if (loading) return null;
 
-  const displayReviews = reviews && reviews.length > 0 ? reviews.slice(0, 4) : REVIEWS_DATA.slice(0, 4);
+  const displayReviews = reviews ? reviews.slice(0, 4) : [];
 
   return (
     <section className="section" id="reviews">

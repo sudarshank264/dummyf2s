@@ -2,7 +2,6 @@ import React, { useEffect, useState, useContext } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { BLOGS_DATA } from '../data';
 import { DataContext } from '../context/DataContext';
 
 const BlogPage = () => {
@@ -20,10 +19,6 @@ const BlogPage = () => {
     let foundBlog = null;
     if (blogs && blogs.length > 0) {
       foundBlog = blogs.find((b) => String(b._id) === id || String(b.id) === id || String(b.slug) === id);
-    }
-
-    if (!foundBlog) {
-      foundBlog = BLOGS_DATA.find((b) => String(b.id) === id || String(b.slug) === id);
     }
 
     setBlog(foundBlog === undefined ? false : foundBlog);

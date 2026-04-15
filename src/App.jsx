@@ -9,6 +9,8 @@ import ServicesPage from './pages/ServicesPage';
 import CountriesPage from './pages/CountriesPage';
 import BlogsListPage from './pages/BlogsListPage';
 import ContactPage from './pages/ContactPage';
+import ServiceDetailPage from './pages/ServiceDetailPage';
+import CountryDetailPage from './pages/CountryDetailPage';
 import PopupForm from './components/PopupForm';
 
 // ScrollToTop strictly for route changes
@@ -67,6 +69,8 @@ const App = () => {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/reviews" element={<ReviewsPage />} />
         <Route path="/blog/:id" element={<BlogPage />} />
+        <Route path="/service/:id" element={<ServiceDetailPage />} />
+        <Route path="/countries/:slug" element={<CountryDetailPage />} />
       </Routes>
       <PopupForm />
     </DataProvider>

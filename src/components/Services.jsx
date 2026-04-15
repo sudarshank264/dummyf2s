@@ -1,10 +1,13 @@
 import React, { useContext } from 'react';
-import { SERVICES_DATA } from '../data';
+import { Link } from 'react-router-dom';
 import { DataContext } from '../context/DataContext';
 
 const Services = () => {
-  const { services } = useContext(DataContext);
-  const displayServices = services && services.length > 0 ? services : SERVICES_DATA;
+  const { services, loading } = useContext(DataContext);
+  const displayServices = services || [];
+
+  if (loading) return null; // Or some loading state
+
   return (
     <section className="section services-bg" id="services">
       <div className="section-inner">
@@ -19,20 +22,24 @@ const Services = () => {
         </div>
         
         <div className="services-grid reveal">
-          {displayServices.map((service, idx) => (
-            <div className="service-card" key={idx}>
-              <div className="service-num">{service.id || String(idx + 1).padStart(2, '0')}</div>
-              <div className="service-icon-wrap">
-                {service.iconUrl ? (
-                  <img src={service.iconUrl} alt={service.title} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-                ) : (
-                  service.icon || '✨'
-                )}
-              </div>
-              <h3 className="service-title">{service.title}</h3>
-              <p className="service-desc">{service.description || service.desc}</p>
-            </div>
-          ))}
+          {displayServices.map((service, idx) => {
+            // Slugify the title to use as the ID in the URL, or use the database ID if present
+            const serviceId = service._id || service.id || service.title.toLowerCase().replace(/[\s\W-]+/g, '-');
+            return (
+              <Link to={`/service/${serviceId}`} className="service-card" key={idx} style={{ textDecoration: 'none' }}>
+                <div className="service-num">{service.id || String(idx + 1).padStart(2, '0')}</div>
+                <div className="service-icon-wrap">
+                  {service.iconUrl ? (
+                    <img src={service.iconUrl} alt={service.title} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                  ) : (
+                    service.icon || '✨'
+                  )}
+                </div>
+                <h3 className="service-title">{service.title}</h3>
+                <p className="service-desc">{service.description || service.desc}</p>
+              </Link>
+            );
+          })}
         </div>
       </div>
     </section>

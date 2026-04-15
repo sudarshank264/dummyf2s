@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AdminBlogsCMS from '../components/AdminBlogsCMS';
 import AdminReviewsCMS from '../components/AdminReviewsCMS';
+import AdminCountriesCMS from '../components/AdminCountriesCMS';
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -74,6 +75,9 @@ const AdminDashboard = () => {
           <button className={`ad-nav-btn ${activeTab === 'reviews' ? 'active' : ''}`} onClick={() => setActiveTab('reviews')}>
             ⭐ Manage Reviews
           </button>
+          <button className={`ad-nav-btn ${activeTab === 'countries' ? 'active' : ''}`} onClick={() => setActiveTab('countries')}>
+            🗺️ Manage Countries
+          </button>
         </nav>
 
         <div className="ad-sidebar-footer">
@@ -88,7 +92,7 @@ const AdminDashboard = () => {
       {/* Main Content Pane */}
       <main className="ad-main">
         <header className="ad-header">
-          <h1>{activeTab === 'leads' ? 'Client Leads Overview' : activeTab === 'blogs' ? 'Blog Management' : 'Client Reviews Content'}</h1>
+          <h1>{activeTab === 'leads' ? 'Client Leads Overview' : activeTab === 'blogs' ? 'Blog Management' : activeTab === 'countries' ? 'Country Visa Guides' : 'Client Reviews Content'}</h1>
           <p className="ad-subtitle">Welcome back. Here is your latest data payload.</p>
         </header>
 
@@ -136,6 +140,8 @@ const AdminDashboard = () => {
               {activeTab === 'blogs' && <AdminBlogsCMS />}
 
               {activeTab === 'reviews' && <AdminReviewsCMS />}
+
+              {activeTab === 'countries' && <AdminCountriesCMS />}
             </>
           )}
         </div>
