@@ -9,6 +9,7 @@ import ServicesPage from './pages/ServicesPage';
 import CountriesPage from './pages/CountriesPage';
 import BlogsListPage from './pages/BlogsListPage';
 import ContactPage from './pages/ContactPage';
+import PopupForm from './components/PopupForm';
 
 // ScrollToTop strictly for route changes
 const ScrollToTop = () => {
@@ -67,6 +68,7 @@ const App = () => {
         <Route path="/reviews" element={<ReviewsPage />} />
         <Route path="/blog/:id" element={<BlogPage />} />
       </Routes>
+      <PopupForm />
     </DataProvider>
   );
 };
