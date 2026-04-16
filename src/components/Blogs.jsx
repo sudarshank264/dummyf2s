@@ -25,13 +25,15 @@ const Blogs = ({ hideViewAllButton, showAll }) => {
         </div>
         <div className="blogs-grid reveal">
           {displayBlogs.map((blog, idx) => (
-            <Link to={`/blog/${blog.slug || blog.id}`} className="blog-card" key={idx}>
+            <Link to={`/blog/${blog.slug || blog._id || blog.id}`} className="blog-card" key={idx}>
               <div className="blog-thumb">
-                <img
-                  src={blog.bannerImg || 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=600&auto=format&fit=crop'}
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                  alt={blog.title || "blog thumb"}
-                />
+                <div className="blog-thumb-pattern"></div>
+                <div className="blog-thumb-icon">
+                  <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                  </svg>
+                </div>
               </div>
               <div className="blog-body">
                 <div className="blog-tag">{blog.tag}</div>

@@ -18,7 +18,12 @@ const BlogPage = () => {
 
     let foundBlog = null;
     if (blogs && blogs.length > 0) {
-      foundBlog = blogs.find((b) => String(b._id) === id || String(b.id) === id || String(b.slug) === id);
+      const decodedId = decodeURIComponent(id).toLowerCase();
+      foundBlog = blogs.find((b) => 
+        String(b._id).toLowerCase() === decodedId || 
+        String(b.id).toLowerCase() === decodedId || 
+        String(b.slug).toLowerCase() === decodedId
+      );
     }
 
     setBlog(foundBlog === undefined ? false : foundBlog);
@@ -48,7 +53,7 @@ const BlogPage = () => {
           width: '100%',
           height: '55vh',
           minHeight: '400px',
-          backgroundImage: `url(${blog.bannerImg})`,
+          backgroundImage: `url(${blog.bannerImg || 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=1200&auto=format&fit=crop'})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           display: 'flex',
@@ -68,7 +73,7 @@ const BlogPage = () => {
               maxWidth: '900px',
               margin: 'auto'
             }}>
-              {blog.title.split('33,000 Temporary').map((part, i, arr) => 
+              {(blog.title || '').split('33,000 Temporary').map((part, i, arr) => 
                 i === 0 && arr.length > 1 
                   ? <React.Fragment key={i}>{part}<span style={{ color: '#FFD700' }}>33,000 Temporary</span></React.Fragment> 
                   : part
@@ -80,7 +85,27 @@ const BlogPage = () => {
         {/* CONTENT AREA - WHITE BACKGROUND, RED & BLACK ACCENTS */}
         <div className="section" style={{ padding: '60px 0', minHeight: '50vh' }}>
           <section className="section-inner" style={{ maxWidth: '800px', margin: '0 auto' }}>
-            {blog.content.map((block, idx) => {
+            {(!blog.content || (Array.isArray(blog.content) && blog.content.length === 0)) ? (
+              <div style={{
+                background: 'var(--off-white)',
+                padding: '40px',
+                borderRadius: '8px',
+                textAlign: 'center',
+                borderLeft: '4px solid var(--red)',
+                boxShadow: 'var(--shadow)'
+              }}>
+                <p style={{
+                  fontSize: '1.2rem',
+                  fontStyle: 'italic',
+                  color: 'var(--charcoal)',
+                  lineHeight: 1.8,
+                  marginBottom: '16px'
+                }}>
+                  {blog.excerpt || "We are currently drafting the full content for this article."}
+                </p>
+                <div style={{ fontSize: '0.9rem', color: 'var(--grey)' }}>Check back later for updates.</div>
+              </div>
+            ) : Array.isArray(blog.content) ? blog.content.map((block, idx) => {
             if (block.type === 'intro') {
               return (
                 <p key={idx} style={{
@@ -115,14 +140,22 @@ const BlogPage = () => {
                   fontSize: '0.95rem',
                   color: 'var(--charcoal)',
                   marginBottom: '24px',
-                  lineHeight: 1.8
+                  lineHeight: 1.8,
+                  whiteSpace: 'pre-wrap'
                 }}>
                   {block.text}
                 </p>
               );
             }
+            if (block.type === 'image') {
+              return (
+                <img key={idx} src={block.text} alt="blog visual" style={{ width: '100%', borderRadius: '8px', marginBottom: '24px' }} />
+              );
+            }
             return null;
-          })}
+          }) : (
+            <div dangerouslySetInnerHTML={{ __html: blog.content || '' }} />
+          )}
           </section>
         </div>
       </main>
