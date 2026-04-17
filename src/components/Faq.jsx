@@ -1,13 +1,15 @@
 import React, { useState, useContext } from 'react';
 import { DataContext } from '../context/DataContext';
 import { Link } from 'react-router-dom';
-
+import { STATIC_FAQS } from '../data';
 const Faq = () => {
   const [openIdx, setOpenIdx] = useState(null);
   const { content, loading } = useContext(DataContext);
 
-  if (loading) return null;
-  const displayFaqs = content?.faqs || [];
+  if (loading && !STATIC_FAQS.length) return null;
+  const displayFaqs = content?.faqs?.length
+    ? content.faqs
+    : STATIC_FAQS;
 
   const toggle = (idx) => {
     if (openIdx === idx) {
