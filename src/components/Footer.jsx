@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="footer-topbar" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', gap: '20px', paddingBottom: '32px', marginBottom: '40px', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
           <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap', fontSize: '0.85rem' }}>
             {content?.contactPhone ? (
-               <a href={`tel:${content.contactPhone.replace(/ /g, '')}`} style={{ color: 'var(--red)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>📞 <span style={{ color: 'var(--white)', transition: 'color var(--transition)' }}>{content.contactPhone}</span></a>
+              <a href={`tel:${content.contactPhone.replace(/ /g, '')}`} style={{ color: 'var(--red)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>📞 <span style={{ color: 'var(--white)', transition: 'color var(--transition)' }}>{content.contactPhone}</span></a>
             ) : (
               <>
                 <a href="tel:+919266896162" style={{ color: 'var(--red)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>📞 <span style={{ color: 'var(--white)', transition: 'color var(--transition)' }}>+91 926-689-6162</span></a>
@@ -25,13 +25,13 @@ const Footer = () => {
         </div>
         <div className="footer-grid">
           <div className="footer-brand">
-            <img 
-              src="/f2slogo.webp" 
-              alt="Flight2Sucess Immigration" 
+            <img
+              src="/f2slogo.webp"
+              alt="Flight2Sucess Immigration"
               style={{ height: '56px', width: 'auto' }}
             />
             <p>India's best Immigration and Visa Consultants based in South Delhi, providing reliable assistance to thousands of clients across the world.</p>
-            <p className="brand-legal">Brand name of<br/>FLIGHT TO SUCESS IMMIGRATION LLP</p>
+            <p className="brand-legal">Brand name of<br />FLIGHT TO SUCESS IMMIGRATION LLP</p>
           </div>
           <div>
             <h4 className="footer-col-title">Services</h4>
@@ -41,7 +41,7 @@ const Footer = () => {
               ))}
             </ul>
           </div>
-            <div>
+          <div>
             <h4 className="footer-col-title">Contact</h4>
             <ul className="footer-links">
               {FOOTER_LINKS_CONTACT.map((link, idx) => (
@@ -66,7 +66,7 @@ const Footer = () => {
         <div className="footer-bottom">
           <p className="footer-copy">© 2025 FLIGHT TO SUCESS IMMIGRATION LLP. ALL RIGHTS RESERVED.</p>
           <div className="footer-legal">
-            <a  target="_blank" rel="noreferrer">Anti Fraud Policy</a>
+            {/* <a  target="_blank" rel="noreferrer">Anti Fraud Policy</a> */}
             <a href="/#contact">Privacy Policy</a>
             <a href="/#contact">Terms of Service</a>
           </div>

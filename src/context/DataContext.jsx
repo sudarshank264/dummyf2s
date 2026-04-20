@@ -4,7 +4,7 @@ export const DataContext = createContext(null);
 
 export const DataProvider = ({ children }) => {
   const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001';
-  
+
   const [content, setContent] = useState(null);
   const [services, setServices] = useState([]);
   const [blogs, setBlogs] = useState([]);
@@ -35,7 +35,7 @@ export const DataProvider = ({ children }) => {
 
         if (blogsRes && blogsRes.ok) {
           const data = await blogsRes.json();
-          setBlogs(Array.isArray(data) ? data : []);
+          setBlogs(data.blogs || []);   // ✅ FIXED
         }
 
         if (reviewsRes && reviewsRes.ok) {
